@@ -18,12 +18,16 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::post('/user/login', [App\Http\Controllers\ApiController::class, 'login'])->name('user.login');
-Route::group(['prefix' => 'v1' , 'middleware' => 'auth:api'], function(){  
+
+// Users list and details using passport
+Route::group(['middleware' => 'auth:api'], function(){  
     Route::get('/users', [App\Http\Controllers\ApiController::class, 'index'])->name('users');
     Route::get('/users/details', [App\Http\Controllers\ApiController::class, 'detail'])->name('users.detail');
 });
 
+
 Route::post('/customer/login', [App\Http\Controllers\CustomerController::class, 'login'])->name('customer.login');
-Route::middleware('auth:api-customer')->group(function () {
+// Customer list and details using passport
+Route::group(['middleware' => 'auth:api-customer'], function(){
     Route::get('/customer/details', [App\Http\Controllers\CustomerController::class, 'detail'])->name('customer.detail');
 });

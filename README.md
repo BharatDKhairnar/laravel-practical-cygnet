@@ -1,6 +1,7 @@
 
-# Laravel 9.52.4
+**Please Note:** Please change the email credentials on the .env file from your side. Email verification will send to the registrated user account. Also please run the command php artisan serve and npm run dev as well to check the functionality.
 
+# Laravel 9.52.4
 
 ## Tech Stack
 
