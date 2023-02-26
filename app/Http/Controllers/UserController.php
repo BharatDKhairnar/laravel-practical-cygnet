@@ -70,7 +70,7 @@ class UserController extends Controller
         $this->validator($request->all())->validate();
 
         event(new Registered($user = $this->create($request->all()))); // Send the Email verification mail to user
-        $user = $this->create($request->all());
+        // $user = $this->create($request->all());
 
         if($user) {
             return Redirect::to('users')->with('message','Successfully created user!');
