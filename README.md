@@ -1,7 +1,7 @@
-
 **Please Note:** Please change the email credentials on the .env file from your side. Email verification will send to the registrated user account. Also please run the command php artisan serve and npm run dev as well to check the functionality.
 
 # Laravel 9.52.4
+
 
 ## Tech Stack
 
@@ -62,6 +62,20 @@ Login With Super Admin
 Username - admin@gmail.com
 Password - Admin@123
 ```
+
+App User Login Using Passport
+```bash
+http://127.0.0.1:8000/api/user/login
+Entered email and password for getting the access_token and access the detail
+```
+
+App Customer Login Using Passport
+```bash
+http://127.0.0.1:8000/api/customer/login
+Entered email and password for getting the access_token and access the detail
+```
+
+
 ## Screenshots
 
 You can check the screenshot of practical in screenshots folder.
