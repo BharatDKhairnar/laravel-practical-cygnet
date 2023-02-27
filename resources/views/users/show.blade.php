@@ -23,6 +23,8 @@
         <h3>{{ $user->name }}</h3>
         <p>
             <strong>Email:</strong> {{ $user->email }}<br>
+            <strong>Mobile number:</strong> {{ $user->mobile_number }}<br>
+            <strong>Address:</strong> {{ $user->address }}<br>
             <strong>Verified:</strong> {{ $user->email_verified_at == null?'Not Verified':"Verified" }}
         </p>
     </div>

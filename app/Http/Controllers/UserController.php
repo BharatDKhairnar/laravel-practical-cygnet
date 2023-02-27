@@ -24,7 +24,7 @@ class UserController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $data = User::select('id','name','email','email_verified_at')
+            $data = User::select('id','name','email','mobile_number','address','email_verified_at')
                         ->where('user_type','user')->get();
                         
             return DataTables::of($data)->addIndexColumn()
@@ -37,6 +37,12 @@ class UserController extends Controller
                             <input type="submit" value="DELETE!" class="btn btn-small btn-danger" onclick="return confirm(\'Are You Sure Want to Delete this User?\')"/>
                             </form>';
                     return $btn;
+                })
+                ->editColumn('mobile_number', function($row) {
+                    return $row->mobile_number == null?"N/A":$row->mobile_number;
+                })
+                ->editColumn('email_verified_at', function($row) {
+                    return $row->email_verified_at == null?"No":"Yes";
                 })
                 ->rawColumns(['action'])
                 ->make(true);
@@ -55,6 +61,7 @@ class UserController extends Controller
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'user_type' => 'user',
             'password' => Hash::make($data['password']),
         ]);
     }
@@ -69,8 +76,8 @@ class UserController extends Controller
     {
         $this->validator($request->all())->validate();
 
-        event(new Registered($user = $this->create($request->all()))); // Send the Email verification mail to user
-        // $user = $this->create($request->all());
+        // event(new Registered($user = $this->create($request->all()))); // Send the Email verification mail to user
+        $user = $this->create($request->all());
 
         if($user) {
             return Redirect::to('users')->with('message','Successfully created user!');
@@ -129,13 +136,17 @@ class UserController extends Controller
     {
         $request->validate([
             'name'       => 'required',
-            'email'      => 'required|email'
+            'email'      => 'required|email',
+            'mobile_number' => 'required|numeric',
+            'address'      => 'required|string'
         ]);
 
         // store
         $user = User::find($id);
         $user->name       = $request->input('name');
         $user->email      = $request->input('email');
+        $user->mobile_number = $request->input('mobile_number');
+        $user->address      = $request->input('address');
         $user->save();
 
         // redirect

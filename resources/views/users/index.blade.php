@@ -33,6 +33,7 @@
             <td>ID</td>
             <td>Name</td>
             <td>Email</td>
+            <td>Mobile Number</td>
             <td>Verify</td>
             <td>Actions</td>
         </tr>
@@ -52,6 +53,7 @@
             {data: 'id', name: 'id'},
             {data: 'name', name: 'name'},
             {data: 'email', name: 'email'},
+            {data: 'mobile_number', name: 'mobile_number'},
             {data: 'email_verified_at', name: 'email_verified_at'},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ]
