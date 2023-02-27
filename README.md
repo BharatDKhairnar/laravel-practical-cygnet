@@ -63,6 +63,11 @@ Username - admin@gmail.com
 Password - Admin@123
 ```
 
+Please install the passport for create client ID 1 and 2
+````bash
+php artisan passport:install
+````
+
 App User Login Using Passport
 ```bash
 http://127.0.0.1:8000/api/user/login
